@@ -169,7 +169,7 @@ map.on("rotate", updateNorthArrow);
         4377161.01, "#f03b20",
         18574640.54, "#bd0026",
       ],
-      "fill-opacity": 0.6,
+      "fill-opacity": 0,
     },
   });
 
@@ -192,7 +192,7 @@ map.on("rotate", updateNorthArrow);
         4377161.01, "#f03b20",
         18574640.54, "#bd0026",
       ],
-      "fill-opacity": 0.4,
+      "fill-opacity": 0,
     },
   });
 
@@ -215,7 +215,7 @@ map.on("rotate", updateNorthArrow);
         30380864.60, "#f03b20",
         144746407, "#bd0026",
       ],
-      "fill-opacity": 1.0,
+      "fill-opacity": 0,
     },
   });
 
@@ -255,7 +255,7 @@ map.on("rotate", updateNorthArrow);
       34192.90, "#9400d3", // Very light violet
       67030.90, "#000000", // Black for highest values
     ],
-    "fill-opacity": 1,
+    "fill-opacity": 0,
     },
   });
 
@@ -294,7 +294,7 @@ map.on("rotate", updateNorthArrow);
       7.0, "#65358e", // Purple for 7-9
       9.0, "#66c2a5", // Green for 9-11
     ],
-    "fill-opacity": 0.6,
+    "fill-opacity": 0,
     },
   });
 
@@ -335,7 +335,7 @@ map.addLayer({
     ],
     "fill-extrusion-height": ["get", "BldgHeight"], // Use height directly from GeoJSON
     "fill-extrusion-base": 0, // Ground level
-    "fill-extrusion-opacity": 0.8,
+    "fill-extrusion-opacity": 0,
   },
 });
 
@@ -372,7 +372,7 @@ map.addLayer({
       100, "#df65b0", // Bright purple for 100 years
       150, "#ce1256", // Dark purple for 150+ years
     ],
-    "fill-opacity": 1,
+    "fill-opacity": 0,
   },
 });
 
@@ -409,7 +409,7 @@ map.addLayer({
       14257920726.62, "#4A90E2", // Medium blue
       46194747729, "#00008B", // Dark blue for the highest value
     ],
-    "fill-opacity": 0.8,
+    "fill-opacity": 0,
   },
 });
 
@@ -431,7 +431,7 @@ map.addLayer({
       4209144241.94, "#31a354", // Dark green for 4209144241.94 - 13274576896.26
       13274576896.26, "#006d2c", // Very dark green for 13274576896.26 - 46194747729.27
     ],
-    "fill-opacity": 1,
+    "fill-opacity": 0,
   },
 });
 
@@ -453,7 +453,7 @@ map.addLayer({
       15507024.51, "#b2182b", // Deep reddish-brown for 15507024.51 - 32545111.12
       32545111.12, "#67001f", // Dark maroon for 32545111.12 - 38495623107.73
     ],
-    "fill-opacity": 1,
+    "fill-opacity": 0,
   },
 });
 
@@ -475,7 +475,7 @@ map.addLayer({
       4445454478.55, "#9e9ac8", // Medium-dark purple for 4445454478.55 - 14257920726.62
       14257920726.62, "#6a51a3", // Dark purple for 14257920726.62 - 46194747729.27
     ],
-    "fill-opacity": 1,
+    "fill-opacity": 0,
   },
 });
 // Update cursor on hover for better UX
@@ -670,4 +670,12 @@ function showScatterPlot() {
   });
 
 window.addEventListener("resize", scroller.resize);
+
+  // Initialize the first chapter's layer to be visible
+  // This ensures the first layer is visible when the page loads
+  setTimeout(() => {
+    if (config.chapters[0] && config.chapters[0].onChapterEnter.length > 0) {
+      config.chapters[0].onChapterEnter.forEach(setLayerOpacity);
+    }
+  }, 100);
 });

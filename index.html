@@ -20,6 +20,29 @@
     <script src="./map.js"></script>
     <div id="north-arrow-icon" aria-hidden="true"></div>
 
+    <script>
+      // Move the header content into a card and update scroll prompt
+      window.addEventListener('DOMContentLoaded', function() {
+        var header = document.getElementById('header');
+        if (header) {
+          var card = document.createElement('div');
+          card.className = 'header-card';
+          while (header.firstChild) {
+            card.appendChild(header.firstChild);
+          }
+          header.appendChild(card);
+
+          // Find and update the scroll prompt
+          var scrollPrompt = Array.from(card.querySelectorAll('p')).find(p => p.textContent.includes('Scroll to continue'));
+          if (scrollPrompt) {
+            var promptDiv = document.createElement('div');
+            promptDiv.className = 'scroll-prompt';
+            promptDiv.innerHTML = 'Scroll to continue<br><span class="arrow">&#9660;</span>';
+            card.replaceChild(promptDiv, scrollPrompt);
+          }
+        }
+      });
+    </script>
 </body>
 
 </html>

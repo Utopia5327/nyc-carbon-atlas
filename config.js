@@ -234,8 +234,8 @@ var config = {
       chapterDiv: divChapter1,
       location: {
         center: [-73.9850, 40.75609],
-        zoom: 10,
-        zoomSmall: 9,
+        zoom: 9.5, // slightly less than the second page
+        zoomSmall: 8.5, // slightly less than the second page
         pitch: 0,
         bearing: 0,
       },
